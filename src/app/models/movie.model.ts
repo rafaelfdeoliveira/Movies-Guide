@@ -13,7 +13,7 @@ export class Movie {
     public rating: number,
     public durationInMinutes: number,
     public genre: Genre[],
-    public releasedDate: Date,
+    public releaseDate: Date,
     public trailerUrl: string,
     public imageUrl: string
   ) {

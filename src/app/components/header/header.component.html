@@ -1,0 +1,34 @@
+<header>
+  <mat-toolbar>
+    <button
+      *ngIf="showMainMoviesPageBtn"
+      mat-button
+      aria-label="Go to Main Movies page"
+      (click)="navigation.goToMainMoviesPage()"
+    >
+      Main Movies
+      <mat-icon fontIcon="home"></mat-icon>
+    </button>
+    <button
+      *ngIf="showWatchlistPageBtn"
+      mat-button
+      aria-label="Go To Watchlist page"
+      (click)="navigation.goToWatchlistPage()"
+    >
+      Watchlist
+      <mat-icon fontIcon="watch_later"></mat-icon>
+    </button>
+    <button
+      *ngIf="showWatchlistClearBtn"
+      mat-button
+      aria-label="Clear watchlist"
+      (click)="storage.clearWatchlist()"
+    >
+      Clear
+      <mat-icon fontIcon="watch_later"></mat-icon>
+    </button>
+    <div>
+      <span>{{ title }}</span>
+    </div>
+  </mat-toolbar>
+</header>

@@ -1,0 +1,31 @@
+<mat-card *ngIf="movie">
+  <mat-card-header>
+    <mat-card-title>{{ movie.title }}</mat-card-title>
+    <app-watchlist-toggle-button [movieId]="movie.id"></app-watchlist-toggle-button>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <div>
+      <img
+        [src]="movie.imageUrl"
+        [alt]="movie.title + ' - poster image'"
+        onerror="this.onerror=null; this.src='./assets/icon/default-thumbnail.svg'"
+      />
+    </div>
+    <div>
+      <div>
+        <p>{{ movie.description }}</p>
+        <p>Rating: <b>{{ movie.rating | number: '1.1-1' }}</b></p>
+        <p>Duration: <b>{{ movie.durationInMinutes | duration }}</b></p>
+        <p>Genre: <b>{{ movie.genre }}</b></p>
+        <p>Release Date: <b>{{ movie.releaseDate | date: 'd MMMM yyyy' }}</b></p>
+      </div>
+      <youtube-player
+        [width]="youtubeVideoWidth"
+        [height]="youtubeVideoHeight"
+        [videoId]="movie.trailerVideoId"
+      ></youtube-player>
+    </div>
+  </mat-card-content>
+  <mat-divider></mat-divider>
+</mat-card>

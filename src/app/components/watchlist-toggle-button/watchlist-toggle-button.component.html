@@ -1,0 +1,9 @@
+<mat-slide-toggle
+  *ngIf="movieId"
+  aria-label="Add or remove movie to Watchlist"
+  color="warn"
+  [checked]="storage.isOnWatchlist(movieId)"
+  (change)="storage.toggleMovieOnWatchlist(movieId)"
+>
+  <app-watchlist-button [movieId]="movieId"></app-watchlist-button>
+</mat-slide-toggle>

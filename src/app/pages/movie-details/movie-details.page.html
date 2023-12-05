@@ -1,21 +1,4 @@
-<header>
-  <button
-    mat-button
-    aria-label="Go to Main Movies page"
-    (click)="navigation.goToMainMoviesPage()"
-  >
-    Main Movies
-    <mat-icon fontIcon="home"></mat-icon>
-  </button>
-  <button
-    mat-button
-    aria-label="Go To Watchlist page"
-    (click)="navigation.goToWatchlistPage()"
-  >
-    Watchlist
-    <mat-icon fontIcon="watch_later"></mat-icon>
-  </button>
-</header>
+<app-header title="Movie Details" [showMainMoviesPageBtn]="true" [showWatchlistPageBtn]="true"></app-header>
 <main>
-  <app-movie-card *ngIf="movie" [movie]="movie"></app-movie-card>
+  <app-movie-card [movie]="movie"></app-movie-card>
 </main>

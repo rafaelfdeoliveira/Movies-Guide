@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HasMovieDetailsGuard } from './guards/has-movie-details.guard';
 
 
 const routes: Routes = [
@@ -9,7 +10,8 @@ const routes: Routes = [
   },
   {
     path: 'movie-details/:movieId',
-    loadComponent: () => import('./pages/movie-details/movie-details.page').then(m => m.MovieDetailsPage)
+    loadComponent: () => import('./pages/movie-details/movie-details.page').then(m => m.MovieDetailsPage),
+    canActivate: [HasMovieDetailsGuard]
   },
   {
     path: 'watchlist',

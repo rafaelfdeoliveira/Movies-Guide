@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StorageService {
 
-  private watchlistCache: number[]|null = null;
+  private _watchlistCache$ = new BehaviorSubject<number[]|null>(null);
 
   private readonly localStorage: Storage = window.localStorage;
   private readonly watchlistKey = 'movies-watchlist';
+
+  public get watchlistCache$(): Observable<number[]|null> {
+    return this._watchlistCache$.asObservable();
+  }
 
   public isOnWatchlist(movieId: number) {
     const watchlist = this.getWatchlist();
@@ -25,7 +30,7 @@ export class StorageService {
   }
 
   public clearWatchlist() {
-    this.watchlistCache = [];
+    this._watchlistCache$.next([]);
     this.localStorage.removeItem(this.watchlistKey);
   }
 
@@ -41,23 +46,24 @@ export class StorageService {
   }
 
   private getWatchlist(): number[] {
-    if (this.watchlistCache !== null) {
-      return this.watchlistCache;
+    const watchlistCache = this._watchlistCache$.getValue()
+    if (watchlistCache !== null) {
+      return watchlistCache;
     }
 
     const storedValue = this.localStorage.getItem(this.watchlistKey);
     if (storedValue) {
       const watchlist = JSON.parse(storedValue);
-      this.watchlistCache = watchlist;
+      this._watchlistCache$.next(watchlist);
       return watchlist;
     }
 
-    this.watchlistCache = [];
-    return this.watchlistCache;
+    this._watchlistCache$.next([]);
+    return [];
   }
 
   private saveWatchlist(watchlist: number[]) {
-    this.watchlistCache = watchlist;
+    this._watchlistCache$.next(watchlist);
     this.localStorage.setItem(this.watchlistKey, JSON.stringify(watchlist));
   }
 }

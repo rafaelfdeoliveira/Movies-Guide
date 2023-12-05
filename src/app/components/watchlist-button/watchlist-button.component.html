@@ -1,6 +1,6 @@
 <button
   *ngIf="movieId"
-  color="warn"
+  [color]="storage.isOnWatchlist(movieId) ? 'warn' : null"
   mat-button
   aria-label="Add or remove movie to Watchlist"
   (click)="storage.toggleMovieOnWatchlist(movieId)"

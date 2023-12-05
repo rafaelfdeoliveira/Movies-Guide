@@ -1,1 +1,20 @@
-<p>watchlist works!</p>
+<app-header title="Watchlist" [showMainMoviesPageBtn]="true" [showWatchlistClearBtn]="true"></app-header>
+<main>
+  <app-movies-table
+    *ngIf="watchlistMoviesData?.data?.length; else noMoviesOnWatchlist"
+    [moviesListData]="watchlistMoviesData"
+  ></app-movies-table>
+  <ng-template #noMoviesOnWatchlist>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Empty</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          This watchlist is empty.
+          Try adding some movies from the Main Movies page.
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </ng-template>
+</main>
