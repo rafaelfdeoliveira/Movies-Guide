@@ -1,0 +1,56 @@
+main, header {
+  padding: 10px;
+}
+
+tbody {
+  gap: 5px;
+}
+
+tr {
+
+  &:nth-child(2n) {
+    background-color: lightgray;
+  }
+}
+
+th {
+  font-size: 20px;
+}
+
+td {
+  font-size: 17px;
+
+  img {
+    width: 100px;
+    aspect-ratio: 100/75;
+    cursor: pointer;
+  }
+}
+
+.title-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  & > div {
+    display: flex;
+    margin: 7px 0;
+    position: relative;
+  }
+}
+
+.on-watchlist {
+  padding-bottom: 20px;
+
+  &::after {
+    content: "On Watchlist";
+    font-size: 13px;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: red;
+    background-color: lightgoldenrodyellow;
+  }
+}

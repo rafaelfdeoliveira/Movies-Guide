@@ -1,0 +1,10 @@
+<button
+  *ngIf="movieId"
+  color="warn"
+  mat-button
+  aria-label="Add or remove movie to Watchlist"
+  (click)="storage.toggleMovieOnWatchlist(movieId)"
+>
+  {{ storage.isOnWatchlist(movieId) ? 'Remove' : 'Add' }}
+  <mat-icon fontIcon="watch_later"></mat-icon>
+</button>
